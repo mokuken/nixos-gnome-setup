@@ -101,6 +101,7 @@
 
       # Dev tools
       git
+      nodejs
 
       # Code/Text editors
       vscodium
