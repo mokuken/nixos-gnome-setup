@@ -137,6 +137,20 @@
     # tali
   ]);
 
+  # Apache + PHP
+  services.httpd.enable = true;
+  services.httpd.enablePHP = true;
+
+  services.httpd.virtualHosts."phpDevelopment" = {
+    documentRoot = "/var/www/phpDevelopment";
+    # want ssl + a let's encrypt certificate? add `forceSSL = true;` right here
+  };
+  
+  systemd.tmpfiles.rules = [
+    "d /var/www/phpDevelopment"
+    "f /var/www/phpDevelopment/index.php - - - - <?php phpinfo();"
+  ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
