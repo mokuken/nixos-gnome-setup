@@ -123,6 +123,7 @@
 
       # Other pkgs
       neofetch
+      gnome.dconf-editor
   ];
 
   # Set new default text editor
