@@ -108,22 +108,28 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-      # Browser
-      ungoogled-chromium
+    # Gnome extensions
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.forge
+    gnomeExtensions.logo-menu
+
+    # Browser
+    ungoogled-chromium
      
-      # Video player
-      mpv
+    # Video player
+    mpv
 
-      # Dev tools
-      git
-      nodejs
+    # Dev tools
+    git
+    nodejs
 
-      # Code/Text editors
-      vscodium
+    # Code/Text editors
+    vscodium
 
-      # Other pkgs
-      neofetch
-      gnome.dconf-editor
+    # Other pkgs
+    neofetch
+    gnome.dconf-editor
   ];
 
   # Set new default text editor
