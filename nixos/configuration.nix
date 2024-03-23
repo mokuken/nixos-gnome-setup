@@ -159,9 +159,13 @@
     # tali
   ]);
 
-  # Apache + PHP
+  # Apache + PHP + MySQL (MariaDB) Database
   services.httpd.enable = true;
   services.httpd.enablePHP = true;
+  services.mysql = {
+    enable = true;
+    package = pkgs.mariadb;
+  };
 
   services.httpd.virtualHosts."phpDevelopment" = {
     documentRoot = "/var/www/phpDevelopment";
