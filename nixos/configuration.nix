@@ -170,12 +170,17 @@
     enable = true;
     package = pkgs.mariadb;
   };
-  systemd.services.run-script = {
+  systemd.services.adminer = {
     description = "Install Adminer Database Manager";
     script = ''
-      mkdir -p /var/www/phpDevelopment
-      cd /var/www/phpDevelopment
-      /run/current-system/sw/bin/curl -L -o adminer.php https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1-mysql-en.php
+      directory="/var/www/phpDevelopment"
+      if [ ! -f "$directory/adminer.php" ]; then
+        echo "adminer is not installed. installing.."
+        /run/current-system/sw/bin/curl -s -L -o "$directory/adminer.php" https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1-mysql-en.php
+        echo "adminer is now installed."
+      else
+        echo "adminer is already exists, quiting.."
+      fi
     '';
     wantedBy = [ "multi-user.target" ];
   };
