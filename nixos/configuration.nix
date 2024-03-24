@@ -159,12 +159,21 @@
     # tali
   ]);
 
-  # Apache + PHP + MySQL (MariaDB) Database
+  # Apache + PHP + MySQL (MariaDB) Database + Adminer Database Manager
   services.httpd.enable = true;
   services.httpd.enablePHP = true;
   services.mysql = {
     enable = true;
     package = pkgs.mariadb;
+  };
+  systemd.services.run-script = {
+    description = "Install Adminer Database Manager";
+    script = ''
+      mkdir -p /var/www/phpDevelopment
+      cd /var/www/phpDevelopment
+      /run/current-system/sw/bin/curl -L -o adminer.php https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1-mysql-en.php
+    '';
+    wantedBy = [ "multi-user.target" ];
   };
 
   services.httpd.virtualHosts."phpDevelopment" = {
